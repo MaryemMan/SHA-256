@@ -93,9 +93,11 @@ void compress_block(uint32_t H[8], const uint32_t W[64]){
     H[7] = h + H[7];
 }
 
-int main(){
+int main(int argc, char *argv[]){
+    if (argc != 2) return 1;
+
     uint8_t block[64];
-    pad_block(block, "abc");
+    pad_block(block, argv[1]);
     uint32_t W[64];
     parse_block(block, W);
     expand_block(W);
